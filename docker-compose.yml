@@ -1,0 +1,14 @@
+version: '3'
+services:
+  database:
+    image: 'mongo:latest'
+    container_name: 'recipes-mongo'
+    environment:
+      - MONGO_INITDB_DATABASE=recipe-app
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+    volumes:
+      - ./data/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - ./mongo-volume:/data/db
+    ports:
+      - '27017-27019:27017-27019'
