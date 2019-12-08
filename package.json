@@ -4,6 +4,7 @@
   "description": "",
   "main": "build/app.js",
   "scripts": {
+    "tsc": "node -v && npm -v && tsc -v && tsc",
     "watch-ts": "tsc -w",
     "watch-node": "nodemon dist/app.js",
     "watch": "docker-compose up -d && concurrently -k -p \"[{name}]\" -n \"TypeScript, Node\" -c \"yello.bold, cyan.bold\" \"yarn run watch-ts\" \"yarn run watch-node\""
@@ -27,5 +28,9 @@
     "multer": "^1.4.2",
     "nodemon": "^2.0.1",
     "typescript": "^3.7.3"
+  },
+  "engines": {
+    "node": "13.3.0",
+    "npm": "6.13.1"
   }
 }

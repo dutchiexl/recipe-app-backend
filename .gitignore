@@ -54,4 +54,3 @@ src/assets
 public
 *.env
 *mongo-volume
-build
