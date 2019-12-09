@@ -2,6 +2,7 @@ import * as bodyParser from 'body-parser';
 import * as controllers from './controllers/index';
 import { Server } from '@overnightjs/core';
 import { Logger } from '@overnightjs/logger';
+import express from 'express';
 
 let cors = require('cors');
 
@@ -11,6 +12,9 @@ let cors = require('cors');
  * @class Server
  */
 class ApiServer extends Server {
+
+  UPLOAD_PATH = 'public';
+
   /**
    * Bootstrap the application.
    *
@@ -75,6 +79,7 @@ class ApiServer extends Server {
   }
 
   public start(port: number): void {
+    this.app.use(express.static(this.UPLOAD_PATH));
     this.app.get('*', (req, res) => {
       res.send('Server started on port: ' + port);
     });

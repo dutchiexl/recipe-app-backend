@@ -5,6 +5,7 @@ const bodyParser = tslib_1.__importStar(require("body-parser"));
 const controllers = tslib_1.__importStar(require("./controllers/index"));
 const core_1 = require("@overnightjs/core");
 const logger_1 = require("@overnightjs/logger");
+const express_1 = tslib_1.__importDefault(require("express"));
 let cors = require('cors');
 /**
  * The server.
@@ -12,6 +13,20 @@ let cors = require('cors');
  * @class Server
  */
 class ApiServer extends core_1.Server {
+    /**
+     * Constructor.
+     *
+     * @class Server
+     * @constructor
+     */
+    constructor() {
+        super(true);
+        this.UPLOAD_PATH = 'public';
+        //configure application
+        this.config();
+        //configure routes
+        this.routes();
+    }
     /**
      * Bootstrap the application.
      *
@@ -21,19 +36,6 @@ class ApiServer extends core_1.Server {
      */
     static bootstrap() {
         return new ApiServer();
-    }
-    /**
-     * Constructor.
-     *
-     * @class Server
-     * @constructor
-     */
-    constructor() {
-        super(true);
-        //configure application
-        this.config();
-        //configure routes
-        this.routes();
     }
     /**
      * Configure application
@@ -69,6 +71,7 @@ class ApiServer extends core_1.Server {
         super.addControllers(controllerInstances);
     }
     start(port) {
+        this.app.use(express_1.default.static(this.UPLOAD_PATH));
         this.app.get('*', (req, res) => {
             res.send('Server started on port: ' + port);
         });
