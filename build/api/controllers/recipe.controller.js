@@ -3,26 +3,29 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
 const core_1 = require("@overnightjs/core");
 const recipe_schema_1 = tslib_1.__importDefault(require("../schemas/recipe.schema"));
-const logger_1 = require("@overnightjs/logger");
 let RecipeController = class RecipeController {
-    getRecipes(req, res) {
+    get(req, res) {
         recipe_schema_1.default.find().then(recipes => {
             res.status(200).json(recipes);
         });
     }
-    InsertRecipe(req, res) {
+    insert(req, res) {
         new recipe_schema_1.default(req.body).save().then(result => {
             res.status(200).json(result);
         });
     }
-    UpdateRecipe(req, res) {
+    update(req, res) {
         recipe_schema_1.default.findOneAndUpdate({ _id: req.params.id }, req.body).then(result => {
             res.status(200).json(result);
         });
     }
-    PatchRecipe(req, res) {
-        logger_1.Logger.Info(req.body);
+    patch(req, res) {
         recipe_schema_1.default.findOneAndUpdate({ _id: req.params.id }, req.body).then(result => {
+            res.status(200).json(result);
+        });
+    }
+    delete(req, res) {
+        recipe_schema_1.default.findByIdAndDelete({ _id: req.params.id }, req.body).then(result => {
             res.status(200).json(result);
         });
     }
@@ -32,25 +35,31 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:type", Function),
     tslib_1.__metadata("design:paramtypes", [Object, Object]),
     tslib_1.__metadata("design:returntype", void 0)
-], RecipeController.prototype, "getRecipes", null);
+], RecipeController.prototype, "get", null);
 tslib_1.__decorate([
     core_1.Post(),
     tslib_1.__metadata("design:type", Function),
     tslib_1.__metadata("design:paramtypes", [Object, Object]),
     tslib_1.__metadata("design:returntype", void 0)
-], RecipeController.prototype, "InsertRecipe", null);
+], RecipeController.prototype, "insert", null);
 tslib_1.__decorate([
     core_1.Put(':id'),
     tslib_1.__metadata("design:type", Function),
     tslib_1.__metadata("design:paramtypes", [Object, Object]),
     tslib_1.__metadata("design:returntype", void 0)
-], RecipeController.prototype, "UpdateRecipe", null);
+], RecipeController.prototype, "update", null);
 tslib_1.__decorate([
     core_1.Patch(':id'),
     tslib_1.__metadata("design:type", Function),
     tslib_1.__metadata("design:paramtypes", [Object, Object]),
     tslib_1.__metadata("design:returntype", void 0)
-], RecipeController.prototype, "PatchRecipe", null);
+], RecipeController.prototype, "patch", null);
+tslib_1.__decorate([
+    core_1.Delete(':id'),
+    tslib_1.__metadata("design:type", Function),
+    tslib_1.__metadata("design:paramtypes", [Object, Object]),
+    tslib_1.__metadata("design:returntype", void 0)
+], RecipeController.prototype, "delete", null);
 RecipeController = tslib_1.__decorate([
     core_1.Controller('api/recipes')
 ], RecipeController);
