@@ -33,10 +33,13 @@ export class UploadController {
         bucket.upload(params, function (err: any, data: any) {
             if (err) {
                 console.log('There was an error uploading your file: ', err);
-                return false;
+                res.json({
+                    'error': err
+                });
             }
-            console.log('Successfully uploaded file.', data);
-            return true;
+            res.json({
+                'fileName': req.file.originalname
+            });
         });
     }
 }
