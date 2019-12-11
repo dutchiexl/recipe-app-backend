@@ -1,3 +1,4 @@
+export * from './user.controller'
 export * from './unit.controller'
 export * from './ingredient.controller'
 export * from './recipe.controller'
