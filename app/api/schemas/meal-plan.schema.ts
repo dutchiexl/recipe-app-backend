@@ -5,7 +5,8 @@ import { IMealPlan } from '../interfaces/meal-plan.interface';
 
 const MealPlanSchema: Schema = new Schema({
     name: {type: String, required: true, unique: true},
-    recipes: [{type: Schema.Types.ObjectId, ref: 'Recipe'}]
+    recipes: [{type: Schema.Types.ObjectId, ref: 'Recipe'}],
+    archived: {type: Boolean, default: false}
   },
   {
     timestamps: true
