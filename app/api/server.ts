@@ -53,7 +53,7 @@ class ApiServer extends Server {
     this.app.use(cors({
       origin: '*'
     }));
-    this.app.use(bodyParser.json());
+    this.app.use(bodyParser.json({limit:'10mb'}));
     this.app.use(bodyParser.urlencoded({
       extended: true
     }));
