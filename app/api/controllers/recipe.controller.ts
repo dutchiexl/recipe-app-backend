@@ -7,20 +7,25 @@ import { Auth } from '../middleware/auth.middleware';
 export class RecipeController {
 
     @Get()
+    @Middleware([Auth])
     private get(req: Request, res: Response) {
-        Recipe.find().then(recipes => {
+        Recipe.find({user: res.locals.userId}).then(recipes => {
             res.status(200).json(recipes);
         });
     }
 
     @Post()
+    @Middleware([Auth])
     private insert(req: Request, res: Response) {
-        new Recipe(req.body).save().then(result => {
+        let recipe = req.body;
+        recipe.user = res.locals.userId;
+        new Recipe(recipe).save().then(result => {
             res.status(200).json(result);
         });
     }
 
     @Put(':id')
+    @Middleware([Auth])
     private update(req: Request, res: Response) {
         Recipe.findOneAndUpdate({_id: req.params.id}, req.body).then(result => {
             res.status(200).json(result);
@@ -28,6 +33,7 @@ export class RecipeController {
     }
 
     @Patch(':id')
+    @Middleware([Auth])
     private patch(req: Request, res: Response) {
         Recipe.findOneAndUpdate({_id: req.params.id}, req.body).then(result => {
             res.status(200).json(result);
@@ -35,8 +41,9 @@ export class RecipeController {
     }
 
     @Delete(':id')
+    @Middleware([Auth])
     private delete(req: Request, res: Response) {
-        Recipe.findByIdAndDelete({_id: req.params.id}, req.body).then(result => {
+        Recipe.findOneAndDelete({_id: req.params.id, user: res.locals.userId}).then(result => {
             res.status(200).json(result);
         });
     }

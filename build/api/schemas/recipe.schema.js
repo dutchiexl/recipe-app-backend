@@ -6,14 +6,15 @@ const mongoose_1 = require("mongoose");
 const step_schema_1 = require("./step.schema");
 const item_schema_1 = require("./item.schema");
 const RecipeSchema = new mongoose_1.Schema({
-    name: { type: String, required: true, unique: true },
+    name: { type: String, required: true },
     nameAddition: { type: String, required: true },
     description: { type: String, required: true },
     imagePath: { type: String, required: true },
     items: [item_schema_1.ItemSchema],
     steps: [step_schema_1.StepSchema],
     equipment: [{ type: String }],
-    source: { type: String }
+    source: { type: String },
+    user: { type: mongoose_1.Schema.Types.ObjectId, ref: 'User' },
 }, {
     timestamps: true
 });

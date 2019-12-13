@@ -1,5 +1,6 @@
 import { Document, Schema } from 'mongoose';
 import { IIngredient } from './ingredient.interface';
+import { IUser } from './user.interface';
 
 export interface IRecipe extends Document {
   name: string;
@@ -10,5 +11,6 @@ export interface IRecipe extends Document {
   steps: [{ type: Schema.Types.ObjectId, ref: 'Ingredient' }],
   nutrients: string[],
   equipment: string[],
-  source: string
+  source: string,
+  user: IUser
 }

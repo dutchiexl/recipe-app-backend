@@ -22,8 +22,8 @@ export const Auth: RequestHandler = (req: Request, res: Response, next: NextFunc
         const newToken = sign({userId, username}, secret, {
             expiresIn: process.env.TOKEN_LIFETIME
         });
+        res.locals.userId = userId;
         res.setHeader('token', newToken);
-
         next();
     } else {
         res.status(401).send();

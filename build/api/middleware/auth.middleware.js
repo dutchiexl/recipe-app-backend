@@ -20,6 +20,7 @@ exports.Auth = (req, res, next) => {
         const newToken = jsonwebtoken_1.sign({ userId, username }, secret, {
             expiresIn: process.env.TOKEN_LIFETIME
         });
+        res.locals.userId = userId;
         res.setHeader('token', newToken);
         next();
     }
