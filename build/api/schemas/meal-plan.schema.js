@@ -5,7 +5,8 @@ const mongoose_1 = require("mongoose");
 const mongoose = tslib_1.__importStar(require("mongoose"));
 const MealPlanSchema = new mongoose_1.Schema({
     name: { type: String, required: true, unique: true },
-    recipes: [{ type: mongoose_1.Schema.Types.ObjectId, ref: 'Recipe' }]
+    recipes: [{ type: mongoose_1.Schema.Types.ObjectId, ref: 'Recipe' }],
+    archived: { type: Boolean, default: false }
 }, {
     timestamps: true
 });
