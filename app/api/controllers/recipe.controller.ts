@@ -7,7 +7,6 @@ import { Auth } from '../middleware/auth.middleware';
 export class RecipeController {
 
     @Get()
-    @Middleware([Auth])
     private get(req: Request, res: Response) {
         Recipe.find().then(recipes => {
             res.status(200).json(recipes);
