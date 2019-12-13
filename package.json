@@ -15,6 +15,7 @@
     "@hapi/joi": "^16.1.8",
     "@overnightjs/core": "^1.6.9",
     "@overnightjs/logger": "^1.1.9",
+    "@types/bcrypt": "^3.0.0",
     "@types/body-parser": "^1.17.1",
     "@types/cors": "^2.8.6",
     "@types/dotenv": "^8.2.0",
