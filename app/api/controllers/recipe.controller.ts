@@ -1,11 +1,13 @@
 import { Request, Response } from 'express';
-import { Controller, Delete, Get, Patch, Post, Put } from '@overnightjs/core';
+import { Controller, Delete, Get, Middleware, Patch, Post, Put } from '@overnightjs/core';
 import Recipe from '../schemas/recipe.schema';
+import { Auth } from '../middleware/auth.middleware';
 
 @Controller('api/recipes')
 export class RecipeController {
 
     @Get()
+    @Middleware([Auth])
     private get(req: Request, res: Response) {
         Recipe.find().then(recipes => {
             res.status(200).json(recipes);
