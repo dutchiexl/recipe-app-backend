@@ -6,7 +6,7 @@ import { ItemSchema } from './item.schema';
 
 const RecipeSchema: Schema = new Schema({
         name: {type: String, required: true},
-        nameAddition: {type: String, required: true},
+        nameAddition: {type: String},
         description: {type: String, required: true},
         imagePath: {type: String, required: true},
         items: [ItemSchema],

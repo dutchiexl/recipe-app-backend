@@ -7,7 +7,7 @@ const step_schema_1 = require("./step.schema");
 const item_schema_1 = require("./item.schema");
 const RecipeSchema = new mongoose_1.Schema({
     name: { type: String, required: true },
-    nameAddition: { type: String, required: true },
+    nameAddition: { type: String },
     description: { type: String, required: true },
     imagePath: { type: String, required: true },
     items: [item_schema_1.ItemSchema],
