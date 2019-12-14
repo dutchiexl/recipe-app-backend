@@ -17,6 +17,12 @@ let RecipeController = class RecipeController {
             res.status(200).json(result);
         });
     }
+    insertSharedRecipe(req, res) {
+        let recipe = req.body;
+        new recipe_schema_1.default(recipe).save().then(result => {
+            res.status(200).json(result);
+        });
+    }
     update(req, res) {
         recipe_schema_1.default.findOneAndUpdate({ _id: req.params.id }, req.body).then(result => {
             res.status(200).json(result);
@@ -47,6 +53,13 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:paramtypes", [Object, Object]),
     tslib_1.__metadata("design:returntype", void 0)
 ], RecipeController.prototype, "insert", null);
+tslib_1.__decorate([
+    core_1.Post(),
+    core_1.Middleware([auth_middleware_1.Auth]),
+    tslib_1.__metadata("design:type", Function),
+    tslib_1.__metadata("design:paramtypes", [Object, Object]),
+    tslib_1.__metadata("design:returntype", void 0)
+], RecipeController.prototype, "insertSharedRecipe", null);
 tslib_1.__decorate([
     core_1.Put(':id'),
     core_1.Middleware([auth_middleware_1.Auth]),

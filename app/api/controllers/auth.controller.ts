@@ -1,12 +1,11 @@
 import { Request, Response } from 'express';
-import { Controller, Post } from '@overnightjs/core';
+import {Controller, Post} from '@overnightjs/core';
 import User from '../schemas/user.schema';
 import { UserUtil } from '../utils/user.util';
 import { sign } from 'jsonwebtoken';
 
 @Controller('auth')
-export class UserController {
-
+export class AuthController {
     @Post('login')
     private login(req: Request, res: Response) {
         const secret = process.env.PRIVATE_KEY ? process.env.PRIVATE_KEY : '';

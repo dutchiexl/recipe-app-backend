@@ -3,6 +3,7 @@ import { Schema } from 'mongoose';
 import { IRecipe } from '../interfaces/recipe.interface';
 import { StepSchema } from './step.schema';
 import { ItemSchema } from './item.schema';
+import { ShareSchema } from './share.schema';
 
 const RecipeSchema: Schema = new Schema({
         name: {type: String, required: true},
@@ -13,6 +14,7 @@ const RecipeSchema: Schema = new Schema({
         steps: [StepSchema],
         equipment: [{type: String}],
         source: {type: String},
+        share: ShareSchema,
         user: {type: Schema.Types.ObjectId, ref: 'User'},
     },
     {
