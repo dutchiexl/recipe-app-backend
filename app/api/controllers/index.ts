@@ -1,6 +1,7 @@
 export * from './user.controller'
 export * from './unit.controller'
 export * from './ingredient.controller'
+export * from './recipe-categories.controller'
 export * from './recipe.controller'
 export * from './mealplan.controller'
 export * from './ingredient-category.controller'
