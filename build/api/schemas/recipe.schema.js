@@ -13,6 +13,7 @@ const RecipeSchema = new mongoose_1.Schema({
     items: [item_schema_1.ItemSchema],
     steps: [step_schema_1.StepSchema],
     equipment: [{ type: String }],
+    categories: [{ type: mongoose_1.Schema.Types.ObjectId, ref: 'RecipeCategory' }],
     source: { type: String },
     user: { type: mongoose_1.Schema.Types.ObjectId, ref: 'User' },
 }, {

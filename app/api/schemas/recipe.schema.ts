@@ -12,6 +12,7 @@ const RecipeSchema: Schema = new Schema({
         items: [ItemSchema],
         steps: [StepSchema],
         equipment: [{type: String}],
+        categories: [{type: Schema.Types.ObjectId, ref: 'RecipeCategory'}],
         source: {type: String},
         user: {type: Schema.Types.ObjectId, ref: 'User'},
     },
