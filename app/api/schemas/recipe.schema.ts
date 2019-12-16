@@ -9,6 +9,7 @@ const RecipeSchema: Schema = new Schema({
         nameAddition: {type: String},
         description: {type: String, required: true},
         imagePath: {type: String, required: true},
+        serves: {type: Number, required: true, default: 2},
         items: [ItemSchema],
         steps: [StepSchema],
         equipment: [{type: String}],

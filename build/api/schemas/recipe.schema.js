@@ -10,6 +10,7 @@ const RecipeSchema = new mongoose_1.Schema({
     nameAddition: { type: String },
     description: { type: String, required: true },
     imagePath: { type: String, required: true },
+    serves: { type: Number, required: true, default: 2 },
     items: [item_schema_1.ItemSchema],
     steps: [step_schema_1.StepSchema],
     equipment: [{ type: String }],
