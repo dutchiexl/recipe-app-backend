@@ -4,9 +4,12 @@ const tslib_1 = require("tslib");
 const core_1 = require("@overnightjs/core");
 const recipe_schema_1 = tslib_1.__importDefault(require("../schemas/recipe.schema"));
 const auth_middleware_1 = require("../middleware/auth.middleware");
+const recipe_category_schema_1 = tslib_1.__importDefault(require("../schemas/recipe-category.schema"));
 let RecipeController = class RecipeController {
     get(req, res) {
-        recipe_schema_1.default.find({ user: res.locals.userId }).then(recipes => {
+        recipe_schema_1.default.find({ user: res.locals.userId })
+            .populate({ path: 'categories', model: recipe_category_schema_1.default })
+            .then(recipes => {
             res.status(200).json(recipes);
         });
     }

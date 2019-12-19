@@ -2,6 +2,8 @@ import { Request, Response } from 'express';
 import { Controller, Delete, Get, Middleware, Patch, Post, Put } from '@overnightjs/core';
 import Recipe from '../schemas/recipe.schema';
 import { Auth } from '../middleware/auth.middleware';
+import RecipeCategory from '../schemas/recipe-category.schema'
+
 
 @Controller('api/recipes')
 export class RecipeController {
@@ -9,9 +11,11 @@ export class RecipeController {
     @Get()
     @Middleware([Auth])
     private get(req: Request, res: Response) {
-        Recipe.find({user: res.locals.userId}).then(recipes => {
-            res.status(200).json(recipes);
-        });
+        Recipe.find({user: res.locals.userId})
+            .populate({path: 'categories', model: RecipeCategory})
+            .then(recipes => {
+                res.status(200).json(recipes);
+            });
     }
 
     @Post()

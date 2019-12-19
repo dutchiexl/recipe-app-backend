@@ -14,5 +14,6 @@ export interface IRecipe extends Document {
     equipment: string[],
     source: string,
     share: IShare,
+    serves: number,
     user: IUser
 }
