@@ -28,6 +28,15 @@ export class RecipeController {
         });
     }
 
+    @Post()
+    @Middleware([Auth])
+    private insertSharedRecipe(req: Request, res: Response) {
+        let recipe = req.body;
+        new Recipe(recipe).save().then(result => {
+            res.status(200).json(result);
+        });
+    }
+
     @Put(':id')
     @Middleware([Auth])
     private update(req: Request, res: Response) {

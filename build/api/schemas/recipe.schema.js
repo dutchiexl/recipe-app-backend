@@ -5,6 +5,7 @@ const mongoose = tslib_1.__importStar(require("mongoose"));
 const mongoose_1 = require("mongoose");
 const step_schema_1 = require("./step.schema");
 const item_schema_1 = require("./item.schema");
+const share_schema_1 = require("./share.schema");
 const RecipeSchema = new mongoose_1.Schema({
     name: { type: String, required: true },
     nameAddition: { type: String },
@@ -16,6 +17,7 @@ const RecipeSchema = new mongoose_1.Schema({
     equipment: [{ type: String }],
     categories: [{ type: mongoose_1.Schema.Types.ObjectId, ref: 'RecipeCategory' }],
     source: { type: String },
+    share: share_schema_1.ShareSchema,
     user: { type: mongoose_1.Schema.Types.ObjectId, ref: 'User' },
 }, {
     timestamps: true
