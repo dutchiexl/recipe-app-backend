@@ -18,7 +18,8 @@ let SharedRecipesController = class SharedRecipesController {
                 recipe.set({
                     share: {
                         user: mongoose_1.Types.ObjectId(res.locals.userId),
-                        status: shared_status_enum_1.SharedStatusEnum.PENDING
+                        status: shared_status_enum_1.SharedStatusEnum.PENDING,
+                        recipe: data.recipeId
                     }
                 });
                 recipe.save().then(result => {

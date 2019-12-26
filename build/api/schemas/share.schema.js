@@ -8,5 +8,6 @@ exports.ShareSchema = new mongoose_1.Schema({
         type: String,
         enum: Object.values(shared_status_enum_1.SharedStatusEnum),
         default: shared_status_enum_1.SharedStatusEnum.PENDING
-    }
+    },
+    recipe: { type: mongoose_1.Schema.Types.ObjectId, ref: 'Recipe' }
 });

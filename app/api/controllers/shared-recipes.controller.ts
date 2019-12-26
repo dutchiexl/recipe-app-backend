@@ -24,7 +24,8 @@ export class SharedRecipesController {
                         share:
                             {
                                 user: Types.ObjectId(res.locals.userId),
-                                status: SharedStatusEnum.PENDING
+                                status: SharedStatusEnum.PENDING,
+                                recipe: data.recipeId
                             }
                     }
                 );

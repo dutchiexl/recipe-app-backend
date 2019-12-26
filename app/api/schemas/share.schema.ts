@@ -7,6 +7,7 @@ export const ShareSchema: Schema = new Schema({
             type: String,
             enum: Object.values(SharedStatusEnum),
             default: SharedStatusEnum.PENDING
-        }
+        },
+        recipe: {type: Schema.Types.ObjectId, ref: 'Recipe'}
     }
 );
