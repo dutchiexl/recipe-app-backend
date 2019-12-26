@@ -10,6 +10,7 @@ export interface IRecipe extends Document {
     imagePath: string,
     ingredients: IIngredient[],
     steps: [{ type: Schema.Types.ObjectId, ref: 'Ingredient' }],
+    categories: [{ type: Schema.Types.ObjectId, ref: 'Category' }],
     nutrients: string[],
     equipment: string[],
     source: string,
