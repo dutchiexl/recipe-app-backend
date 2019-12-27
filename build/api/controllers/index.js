@@ -10,5 +10,5 @@ tslib_1.__exportStar(require("./recipe.controller"), exports);
 tslib_1.__exportStar(require("./mealplan.controller"), exports);
 tslib_1.__exportStar(require("./ingredient-category.controller"), exports);
 tslib_1.__exportStar(require("./upload.controller"), exports);
-tslib_1.__exportStar(require("./api.controller"), exports);
 tslib_1.__exportStar(require("./shared-recipes.controller"), exports);
+tslib_1.__exportStar(require("./api.controller"), exports);

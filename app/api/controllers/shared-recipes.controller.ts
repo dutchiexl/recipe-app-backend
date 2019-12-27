@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Controller, Middleware, Post } from '@overnightjs/core';
+import {Controller, Get, Middleware, Post} from '@overnightjs/core';
 import Recipe from '../schemas/recipe.schema';
 import { Auth } from '../middleware/auth.middleware';
 import { SharedStatusEnum } from '../enums/shared-status.enum';
@@ -9,6 +9,17 @@ import User from '../schemas/user.schema'
 
 @Controller('api/sharedrecipes')
 export class SharedRecipesController {
+
+    @Get()
+    @Middleware([Auth])
+    private get(req: Request, res: Response) {
+        Recipe.find({ "share.user": Types.ObjectId(res.locals.userId)})
+            .select('share.recipe -_id')
+            .then(recipes => {
+                return res.status(200).json(recipes);
+            });
+    }
+
     @Post()
     @Middleware([Auth])
     private insert(req: Request, res: Response) {
@@ -23,7 +34,7 @@ export class SharedRecipesController {
                 recipe.set({
                         share:
                             {
-                                user: Types.ObjectId(res.locals.userId),
+                                user: new User({_id: Types.ObjectId(res.locals.userId)}),
                                 status: SharedStatusEnum.PENDING,
                                 recipe: data.recipeId
                             }
