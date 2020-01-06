@@ -14,7 +14,6 @@ export class SharedRecipesController {
     @Middleware([Auth])
     private get(req: Request, res: Response) {
         Recipe.find({ "share.user": Types.ObjectId(res.locals.userId)})
-            .select('share.recipe -_id')
             .then(recipes => {
                 return res.status(200).json(recipes);
             });

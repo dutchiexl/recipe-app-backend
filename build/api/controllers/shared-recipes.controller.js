@@ -10,7 +10,6 @@ const user_schema_1 = tslib_1.__importDefault(require("../schemas/user.schema"))
 let SharedRecipesController = class SharedRecipesController {
     get(req, res) {
         recipe_schema_1.default.find({ "share.user": mongoose_1.Types.ObjectId(res.locals.userId) })
-            .select('share.recipe -_id')
             .then(recipes => {
             return res.status(200).json(recipes);
         });
